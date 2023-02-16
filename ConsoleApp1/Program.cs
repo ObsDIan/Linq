@@ -11,35 +11,28 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            var list = new List<string>();
+            var list2 = new List<Product>();
             var path = @"D:\跨域黑客\C#\linq pc\linqHw\product.csv";
-            var read = new StreamReader(File.OpenRead(path));
-            
-            List<string> lines = new List<string>();
-            List<string> tags = new List<string>();
-            List<string> count = new List<string>();
-            //List<string>
+            var read = new StreamReader(path);
+
+            //var Min = list.Where((x) => );
             while (!read.EndOfStream)
             {
                 var data = read.ReadLine();
                 var sp = data.Split(',');
-                lines.Add(sp[0]);
-                tags.Add(sp[1]);
-                count.Add(sp[2]);
+                for(int i = 0; i < sp.Length; i++)
+                {
+                    list.Add(sp[i]);
+                    list2 = CreateList(sp[i], sp[i+1], sp[i+2], sp[i+3], sp[i+4]);
+                }
             }
-            foreach (var d1 in lines)
-            {
-                Console.WriteLine(d1);
-            }
-            foreach (var d2 in tags)
-            {
-                Console.WriteLine(d2);
-            }
-            foreach (var d3 in count)
-            {
-                Console.WriteLine(d3);
-            }
-           
 
+            foreach(var i in list)
+            {
+                Console.WriteLine(i);
+                
+            }
 
 
             Console.ReadLine();
@@ -68,13 +61,21 @@ namespace ConsoleApp1
 
         }
 
-        static List<Product> CreateList() 
+        static List<Product> CreateList(string ID, string Name, string Count, string Price, string Class) 
         {
             
+
             //商品編號,商品名稱,商品數量,價格,商品類別
             return new List<Product>
             {
-               // new Product {ProductID = , ProductName = "", ProductCount = , ProductPrice = , ProductClass = "" }
+                new Product
+                {
+                    ProductID = ID,
+                    ProductName = Name,
+                    ProductCount = Count,
+                    ProductPrice = Price,
+                    ProductClass = Class,
+                }
             };
         }
     }

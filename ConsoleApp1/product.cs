@@ -8,10 +8,10 @@ namespace ConsoleApp1
 {
     class Product
     {
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
         public string ProductName { get; set; }
-        public int ProductCount { get; set; }
-        public int ProductPrice { get; set; }
+        public string ProductCount { get; set; }
+        public string ProductPrice { get; set; }
         public string ProductClass { get; set; } 
 
     }
