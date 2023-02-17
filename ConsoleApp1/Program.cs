@@ -19,6 +19,7 @@ namespace ConsoleApp1
             {
                 var data = read.ReadLine();
                 var sp = data.Split(',');
+
                 var product = new Product
                 {
                     ProductID = sp[0],
@@ -31,9 +32,25 @@ namespace ConsoleApp1
                 list.Add(product);
             }
 
+            //1.計算所有商品的總價格
+            var sum = list.Skip(1).Sum((x) => decimal.Parse(x.ProductPrice));
+            Console.WriteLine($"計算所有商品的總價格:{sum:C0}");
 
+            //2.計算所有商品的平均價格
+            var avg = list.Skip(1).Average((x) => decimal.Parse( x.ProductPrice));
+            Console.WriteLine($"計算所有商品的平均價格:{avg:C0}");
+
+            //3.計算商品的總數量
+            var count = list.Skip(1).Count();
+            Console.WriteLine($"商品的總數量:{count}");
+
+            //4.計算商品的平均數量
+            var count_avg = list.Skip(1).Average((x) => decimal.Parse(x.ProductCount));
+            Console.WriteLine($"計算商品的平均數量:{count_avg:N0}");
 
             
+
+
 
 
             Console.ReadLine();
