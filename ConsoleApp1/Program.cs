@@ -13,49 +13,30 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var list = Createlist();
-            //var path = @"product.csv";
-            //var read = new StreamReader(path);
 
-            //while (!read.EndOfStream)
-            //{
-            //    var data = read.ReadLine();
-            //    var sp = data.Split(',');
+            //1.計算所有商品的總價格
+            var sum = list.Skip(1).Sum((x) => decimal.Parse(x.ProductPrice));
+            Console.WriteLine($"計算所有商品的總價格:{sum:C0}");
 
-            //    var product = new Product
-            //    {
-            //        ProductID = sp[0],
-            //        ProductName = sp[1],
-            //        ProductCount = sp[2],
-            //        ProductPrice = sp[3],
-            //        ProductClass = sp[4],
-            //    };
+            //2.計算所有商品的平均價格
+            var avg = list.Skip(1).Average((x) => decimal.Parse(x.ProductPrice));
+            Console.WriteLine($"計算所有商品的平均價格:{avg:C0}");
 
-            //    list.Add(product);
-            //}
+            //3.計算商品的總數量
+            var count = list.Skip(1).Count();
+            Console.WriteLine($"商品的總數量:{count}");
 
-            ////1.計算所有商品的總價格
-            //var sum = list.Skip(1).Sum((x) => decimal.Parse(x.ProductPrice));
-            //Console.WriteLine($"計算所有商品的總價格:{sum:C0}");
+            //4.計算商品的平均數量
+            var count_avg = list.Skip(1).Average((x) => decimal.Parse(x.ProductCount));
+            Console.WriteLine($"計算商品的平均數量:{count_avg:N0}");
 
-            ////2.計算所有商品的平均價格
-            //var avg = list.Skip(1).Average((x) => decimal.Parse(x.ProductPrice));
-            //Console.WriteLine($"計算所有商品的平均價格:{avg:C0}");
+            //5.找出哪一項商品最貴 遞增 小 > [大]
+            var product_max = list.Skip(1).OrderBy((x) => x.ProductPrice).Last();
+            Console.WriteLine(product_max.ProductName);
 
-            ////3.計算商品的總數量
-            //var count = list.Skip(1).Count();
-            //Console.WriteLine($"商品的總數量:{count}");
-
-            ////4.計算商品的平均數量
-            //var count_avg = list.Skip(1).Average((x) => decimal.Parse(x.ProductCount));
-            //Console.WriteLine($"計算商品的平均數量:{count_avg:N0}");
-
-            ////5.找出哪一項商品最貴 遞增 小 > [大]
-            //var product_max = list.Skip(1).OrderBy((x) => x.ProductPrice).Last();
-            //Console.WriteLine(product_max.ProductName);
-
-            ////6.找出哪一項商品最便宜 遞增 [小] > 大
-            //var product_min = list.Skip(1).OrderBy((x) => x.ProductPrice).First();
-            //Console.WriteLine(product_min.ProductName);
+            //6.找出哪一項商品最便宜 遞增 [小] > 大
+            var product_min = list.Skip(1).OrderBy((x) => x.ProductPrice).First();
+            Console.WriteLine(product_min.ProductName);
 
             //7.計算產品類別為 3C 的商品總價
             var _3cSum = list.Skip(1).Where((x) => x.ProductClass == "3C").Sum((x) => decimal.Parse(x.ProductPrice));
