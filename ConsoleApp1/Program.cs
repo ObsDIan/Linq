@@ -37,10 +37,49 @@ namespace ConsoleApp1
             //6.找出哪一項商品最便宜 遞增 [小] > 大
             var product_min = list.Skip(1).OrderBy((x) => x.ProductPrice).First();
             Console.WriteLine(product_min.ProductName);
+            /*
+            var max = list.Skip(1).Max((x) => x.ProductPrice);
+            var tl = list.Skip(1).First((x) => x.ProductPrice == max);
+
+            var te = list.Skip(1).Where((x) => decimal.Parse(x.ProductPrice) == 
+            list.Skip(1).Max((y) => decimal.Parse(y.ProductPrice)));
+            foreach ( var item in te )
+            {
+                Console.WriteLine(item.ProductName);
+            }
+            Console.WriteLine(te.ProductName + "te");*/
+
 
             //7.計算產品類別為 3C 的商品總價
             var _3cSum = list.Skip(1).Where((x) => x.ProductClass == "3C").Sum((x) => decimal.Parse(x.ProductPrice));
             Console.WriteLine($"計算產品類別為 3C 的商品總價:{_3cSum:C0}");
+
+            //8.計算產品類別為飲料及食品的商品總價
+            var EatAndDrinkSum = list.Skip(1).Where((x) => x.ProductClass == "飲料").
+                Sum((x) => decimal.Parse(x.ProductPrice)) +
+                list.Skip(1).Where((x) => x.ProductClass == "食品").
+                Sum((x) => decimal.Parse((x.ProductPrice)));
+            Console.WriteLine($"計算產品類別為飲料及食品的商品總價:{EatAndDrinkSum:C0}");
+
+            //9.找出所有商品類別為食品，而且商品數量大於 100 的商品
+            var Eat_Count100up = list.Skip(1).Where((x) => x.ProductClass == "食品").Where((x) => decimal.Parse(x.ProductCount) > 100m);
+            Console.WriteLine("食品類, 商品數量大於100:");
+            foreach ( var item in Eat_Count100up )
+            {
+                Console.WriteLine($"||{item.ProductName}");
+            }
+
+            //10.找出各個商品類別底下有哪些商品的價格是大於 1000 的商品
+            var EachClass_Count1000up = list.Skip(1).Where((x) => decimal.Parse(x.ProductPrice) > 1000m);
+
+            //11.呈上題，請計算該類別底下所有商品的平均價格
+            //12.依照商品價格由高到低排序
+            //13.依照商品數量由低到高排序
+            //14.找出各商品類別底下，最貴的商品
+            //15.找出各商品類別底下，最貴的商品
+            //16.找出價格小於等於 10000 的商品
+            //17.製作一頁 4 筆總共 5 頁的分頁選擇器
+
 
 
 
@@ -55,11 +94,10 @@ namespace ConsoleApp1
             //3.計算商品的總數量
 
             //4.計算商品的平均數量
-
             //5.找出哪一項商品最貴
             //6.找出哪一項商品最便宜
             //7.計算產品類別為 3C 的商品總價
-            //8.計算產品類別為飲料及食品的商品價格
+            //8.計算產品類別為飲料及食品的商品總價
             //9.找出所有商品類別為食品，而且商品數量大於 100 的商品
             //10.找出各個商品類別底下有哪些商品的價格是大於 1000 的商品
             //11.呈上題，請計算該類別底下所有商品的平均價格
