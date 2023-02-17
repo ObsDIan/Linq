@@ -15,7 +15,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var list = Createlist();
-
+            string[] PageName = {"第一頁", "第二頁", "第三頁", "第四頁" , "第五頁"};
             
             //1.計算所有商品的總價格
             var sum = list.Skip(1).Sum((x) => decimal.Parse(x.ProductPrice));
@@ -177,8 +177,8 @@ namespace ConsoleApp1
  
                     }
                 }
-                Console.WriteLine("==========================================================================");
-
+                Console.WriteLine($"================================={PageName[n]}===================================");
+                Console.WriteLine("             請輸入數字換頁(1, 2, 3, 4, 5) (Y/y) 下一頁  (N/n) 前一頁");
                 string Page = Console.ReadLine();
                 if (Page == "y" || Page == "Y")
                 {
@@ -187,6 +187,26 @@ namespace ConsoleApp1
                 else if (Page == "n" || Page == "N")
                 {
                     n--;
+                }
+                else if (Page == "1")
+                {
+                    n = 0;
+                }
+                else if (Page == "2")
+                {
+                    n = 1;
+                }
+                else if (Page == "3")
+                {
+                    n = 2;
+                }
+                else if (Page == "4")
+                {
+                    n = 3;
+                }
+                else if (Page == "5")
+                {
+                    n = 4;
                 }
 
                 Console.Clear();
@@ -205,11 +225,6 @@ namespace ConsoleApp1
                 
             }
             
-
-
-
-
-
             Console.ReadLine();
         }
 
