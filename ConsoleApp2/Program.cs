@@ -1,12 +1,11 @@
-﻿using ConsoleApp1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp2
 {
     internal class Program
     {
@@ -58,10 +57,10 @@ namespace ConsoleApp1
             //Console.WriteLine(product_min.ProductName);
 
             //7.計算產品類別為 3C 的商品總價
-            var _3cSum = list.Skip(1).Where((x) => x.ProductClass == "3C").Sum((x) => decimal.Parse(x.ProductPrice));
+            var _3cSum = list.Skip(1).Where((x) => x.ProductClass == "3C" ).Sum((x) => decimal.Parse(x.ProductPrice));
             Console.WriteLine($"計算產品類別為 3C 的商品總價:{_3cSum:C0}");
-
-
+            
+            
 
 
 
