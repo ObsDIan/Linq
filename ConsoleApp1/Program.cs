@@ -11,21 +11,33 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var list = new List<string>();
-            var list2 = new List<Product>();
-            var path = @"D:\跨域黑客\C#\linq pc\linqHw\product.csv";
+            //var list = new List<string>();
+            var list = new List<Product>();
+            var path = @"\跨域黑客\C#\linq pc\linqHw\product.csv";
             var read = new StreamReader(path);
+
+
 
             //var Min = list.Where((x) => );
             while (!read.EndOfStream)
             {
                 var data = read.ReadLine();
                 var sp = data.Split(',');
-                for(int i = 0; i < sp.Length; i++)
+                var product = new Product
                 {
-                    list.Add(sp[i]);
-                    list2 = CreateList(sp[i], sp[i+1], sp[i+2], sp[i+3], sp[i+4]);
-                }
+                    ProductID = sp[0],
+                    ProductName = sp[1],
+                    ProductCount = sp[2],
+                    ProductPrice = sp[3],
+                    ProductClass = sp[4],
+                };
+
+                list.Add(product);
+                //for(int i = 0; i < sp.Length; i++)
+                //{
+                //    list.Add(sp[i]);
+                //    list2 = CreateList(sp[i], sp[i+1], sp[i+2], sp[i+3], sp[i+4]);
+                //}
             }
 
             foreach(var i in list)
@@ -33,6 +45,7 @@ namespace ConsoleApp1
                 Console.WriteLine(i);
                 
             }
+
 
 
             Console.ReadLine();
