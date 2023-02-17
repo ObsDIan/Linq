@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleApp1
 {
@@ -15,6 +16,7 @@ namespace ConsoleApp1
         {
             var list = Createlist();
 
+            
             //1.計算所有商品的總價格
             var sum = list.Skip(1).Sum((x) => decimal.Parse(x.ProductPrice));
             Console.WriteLine($"計算所有商品的總價格:{sum:C0}");
@@ -50,9 +52,6 @@ namespace ConsoleApp1
             }
             //var product_min = list.Skip(1).OrderBy((x) => x.ProductPrice).First();
             //Console.WriteLine(product_min.ProductName);
-
-            
-
 
             //7.計算產品類別為 3C 的商品總價
             var _3cSum = list.Skip(1).Where((x) => x.ProductClass == "3C").Sum((x) => decimal.Parse(x.ProductPrice));
@@ -130,7 +129,6 @@ namespace ConsoleApp1
 
             }
 
-
             //15.找出各商品類別底下，最便宜的商品
             Console.WriteLine("\n各商品類別底下，最便宜的商品");
             foreach (var item in Product_GroupByClass)
@@ -146,38 +144,73 @@ namespace ConsoleApp1
 
             }
 
-
             //16.找出價格小於等於 10000 的商品
-            //17.製作一頁 4 筆總共 5 頁的分頁選擇器
+            Console.WriteLine("價格小於等於 10000 的商品");
+            var Price_lowEQ10000 = list.Skip(1).Where((x) => int.Parse(x.ProductPrice) <= 10000);
+            foreach (var item in Price_lowEQ10000)
+            {
+                Console.WriteLine($"{item.ProductName}  --{item.ProductPrice}");
+            }
 
+            //17.製作一頁 4 筆總共 5 頁的分頁選擇器
+            //商品編號,商品名稱,商品數量,價格,商品類別
+            
+            int n = 0;
+            while (n <= 5)
+            {
+                foreach (var item in list.Take(1))
+                {
+                    Console.WriteLine("==========================================================================");
+                    Console.WriteLine($"||{item.ProductID, 4}|| {item.ProductName, 20} || {item.ProductCount,2} || {item.ProductPrice,4} || {item.ProductClass,4} ||");
+                    Console.WriteLine("==========================================================================");
+                }
+                if (n >= 0 && n < 5)
+                {
+                    foreach (var item in list.Skip(1).Skip(n * 4).Take(4))
+                    {
+                        int Name_key = 24, Class_key = 8;
+                        int chineseCharacters = new Regex(@"[^\u4e00-\u9fa5]").Replace(item.ProductName, "").Length;
+                        Name_key = Name_key - chineseCharacters;
+                        chineseCharacters = new Regex(@"[^\u4e00-\u9fa5]").Replace(item.ProductClass, "").Length;
+                        Class_key = Class_key - chineseCharacters;                   
+                        Console.WriteLine($"||  {item.ProductID.PadLeft(4)}  || {item.ProductName.PadLeft(Name_key)} || {item.ProductCount, 8} || {item.ProductPrice, 6} || {item.ProductClass.PadLeft(Class_key)} ||");
+ 
+                    }
+                }
+                Console.WriteLine("==========================================================================");
+
+                string Page = Console.ReadLine();
+                if (Page == "y" || Page == "Y")
+                {
+                    n++;
+                }
+                else if (Page == "n" || Page == "N")
+                {
+                    n--;
+                }
+
+                Console.Clear();
+
+                if (n <= -1)
+                {
+                    
+                    Console.WriteLine("=================================到底了===================================");
+                    n = 0;
+                }
+                else if (n >= 5)
+                {
+                    Console.WriteLine("=================================到底了===================================");
+                    n = 4;
+                }
+                
+            }
+            
 
 
 
 
 
             Console.ReadLine();
-
-            //1.計算所有商品的總價格
-
-            //2.計算所有商品的平均價格
-
-            //3.計算商品的總數量
-
-            //4.計算商品的平均數量
-            //5.找出哪一項商品最貴
-            //6.找出哪一項商品最便宜
-            //7.計算產品類別為 3C 的商品總價
-            //8.計算產品類別為飲料及食品的商品總價
-            //9.找出所有商品類別為食品，而且商品數量大於 100 的商品
-            //10.找出各個商品類別底下有哪些商品的價格是大於 1000 的商品
-            //11.呈上題，請計算該類別底下所有商品的平均價格
-            //12.依照商品價格由高到低排序
-            //13.依照商品數量由低到高排序
-            //14.找出各商品類別底下，最貴的商品
-            //15.找出各商品類別底下，最貴的商品
-            //16.找出價格小於等於 10000 的商品
-            //17.製作一頁 4 筆總共 5 頁的分頁選擇器
-
         }
 
         static List<Product> Createlist()
@@ -205,5 +238,6 @@ namespace ConsoleApp1
 
             return list;
         }
+        
     }
 }
