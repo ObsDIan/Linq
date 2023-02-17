@@ -11,14 +11,10 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            //var list = new List<string>();
             var list = new List<Product>();
             var path = @"\跨域黑客\C#\linq pc\linqHw\product.csv";
             var read = new StreamReader(path);
 
-
-
-            //var Min = list.Where((x) => );
             while (!read.EndOfStream)
             {
                 var data = read.ReadLine();
@@ -33,19 +29,11 @@ namespace ConsoleApp1
                 };
 
                 list.Add(product);
-                //for(int i = 0; i < sp.Length; i++)
-                //{
-                //    list.Add(sp[i]);
-                //    list2 = CreateList(sp[i], sp[i+1], sp[i+2], sp[i+3], sp[i+4]);
-                //}
             }
 
-            foreach(var i in list)
-            {
-                Console.WriteLine(i);
-                
-            }
 
+
+            
 
 
             Console.ReadLine();
@@ -72,24 +60,6 @@ namespace ConsoleApp1
             //16.找出價格小於等於 10000 的商品
             //17.製作一頁 4 筆總共 5 頁的分頁選擇器
 
-        }
-
-        static List<Product> CreateList(string ID, string Name, string Count, string Price, string Class) 
-        {
-            
-
-            //商品編號,商品名稱,商品數量,價格,商品類別
-            return new List<Product>
-            {
-                new Product
-                {
-                    ProductID = ID,
-                    ProductName = Name,
-                    ProductCount = Count,
-                    ProductPrice = Price,
-                    ProductClass = Class,
-                }
-            };
         }
     }
 }
