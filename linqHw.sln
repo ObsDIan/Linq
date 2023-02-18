@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項�
 		product.csv = product.csv
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1A2B_LINQ", "..\..\1A2B_LINQ\1A2B_LINQ\1A2B_LINQ.csproj", "{1AC94328-62F3-4B88-B005-80F05723E3C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{E33560D9-5EEA-42BA-980B-678302F6E52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33560D9-5EEA-42BA-980B-678302F6E52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33560D9-5EEA-42BA-980B-678302F6E52C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC94328-62F3-4B88-B005-80F05723E3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC94328-62F3-4B88-B005-80F05723E3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC94328-62F3-4B88-B005-80F05723E3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC94328-62F3-4B88-B005-80F05723E3C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
